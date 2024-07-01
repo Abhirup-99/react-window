@@ -5,7 +5,7 @@ import ReactTestUtils from 'react-dom/test-utils';
 import { FixedSizeGrid } from '..';
 import * as domHelpers from '../domHelpers';
 
-const findScrollContainer = rendered => rendered.root.children[0].children[0];
+const findScrollContainer = (rendered) => rendered.root.children[0].children[0];
 
 const simulateScroll = (instance, { scrollLeft, scrollTop }) => {
   instance._outerRef.scrollLeft = scrollLeft;
@@ -33,13 +33,13 @@ describe('FixedSizeGrid', () => {
     Object.defineProperties(HTMLElement.prototype, {
       clientWidth: {
         configurable: true,
-        get: function() {
+        get: function () {
           return parseInt(this.style.width, 10) || 0;
         },
       },
       clientHeight: {
         configurable: true,
-        get: function() {
+        get: function () {
           return parseInt(this.style.height, 10) || 0;
         },
       },

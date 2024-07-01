@@ -13,7 +13,7 @@ const simulateScroll = (instance, scrollOffset, direction = 'vertical') => {
   Simulate.scroll(instance._outerRef);
 };
 
-const findScrollContainer = rendered => rendered.root.children[0].children[0];
+const findScrollContainer = (rendered) => rendered.root.children[0].children[0];
 
 describe('VariableSizeList', () => {
   let itemRenderer, itemSize, defaultProps, onItemsRendered;
@@ -35,13 +35,13 @@ describe('VariableSizeList', () => {
     Object.defineProperties(HTMLElement.prototype, {
       clientWidth: {
         configurable: true,
-        get: function() {
+        get: function () {
           return parseInt(this.style.width, 10) || 0;
         },
       },
       clientHeight: {
         configurable: true,
-        get: function() {
+        get: function () {
           return parseInt(this.style.height, 10) || 0;
         },
       },
@@ -58,7 +58,7 @@ describe('VariableSizeList', () => {
     itemRenderer = jest.fn(({ style, ...rest }) => (
       <div style={style}>{JSON.stringify(rest, null, 2)}</div>
     ));
-    itemSize = jest.fn(index => 25 + index);
+    itemSize = jest.fn((index) => 25 + index);
     onItemsRendered = jest.fn();
     defaultProps = {
       children: PureItemRenderer,
@@ -91,7 +91,7 @@ describe('VariableSizeList', () => {
     rendered.update(
       <VariableSizeList
         {...defaultProps}
-        itemSize={index => 50}
+        itemSize={(index) => 50}
         onItemsRendered={onItemsRendered}
       />
     );
@@ -310,7 +310,7 @@ describe('VariableSizeList', () => {
     it('should recalculate the estimated total size', () => {
       const itemSize = jest.fn(() => 75);
       const rendered = ReactTestRenderer.create(
-        <VariableSizeList {...defaultProps} itemSize={index => 25} />
+        <VariableSizeList {...defaultProps} itemSize={(index) => 25} />
       );
       rendered.getInstance().scrollToItem(19);
       // We've measured every item initially.
@@ -335,7 +335,7 @@ describe('VariableSizeList', () => {
           {...defaultProps}
           estimatedItemSize={30}
           overscanCount={1}
-          itemSize={index => 25}
+          itemSize={(index) => 25}
         />
       );
       const scrollContainer = findScrollContainer(rendered);
@@ -349,7 +349,7 @@ describe('VariableSizeList', () => {
           {...defaultProps}
           estimatedItemSize={30}
           overscanCount={1}
-          itemSize={index => 20}
+          itemSize={(index) => 20}
         />
       );
       expect(scrollContainer.props.style.height).toEqual(575);
@@ -363,7 +363,7 @@ describe('VariableSizeList', () => {
           {...defaultProps}
           estimatedItemSize={30}
           overscanCount={1}
-          itemSize={index => 20}
+          itemSize={(index) => 20}
         />
       );
       // The estimated total height should be (100 + 20 * 1 + 30 * 14)px = 540px.
@@ -376,7 +376,7 @@ describe('VariableSizeList', () => {
         <VariableSizeList
           {...defaultProps}
           itemCount={5}
-          itemSize={index => 25}
+          itemSize={(index) => 25}
         />
       );
       // We've rendered 5 rows initially.

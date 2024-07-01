@@ -9,7 +9,7 @@ import pkg from './package.json';
 
 const input = './src/index.js';
 
-const external = id => !id.startsWith('.') && !path.isAbsolute(id);
+const external = (id) => !id.startsWith('.') && !path.isAbsolute(id);
 
 const babelConfigEsModules = babel({
   runtimeHelpers: true,

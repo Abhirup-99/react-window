@@ -14,7 +14,7 @@ const simulateScroll = (instance, scrollOffset, direction = 'vertical') => {
   Simulate.scroll(instance._outerRef);
 };
 
-const findScrollContainer = rendered => rendered.root.children[0].children[0];
+const findScrollContainer = (rendered) => rendered.root.children[0].children[0];
 
 describe('FixedSizeList', () => {
   let itemRenderer, defaultProps, getScrollbarSize, onItemsRendered;
@@ -42,13 +42,13 @@ describe('FixedSizeList', () => {
     Object.defineProperties(HTMLElement.prototype, {
       clientWidth: {
         configurable: true,
-        get: function() {
+        get: function () {
           return parseInt(this.style.width, 10) || 0;
         },
       },
       clientHeight: {
         configurable: true,
-        get: function() {
+        get: function () {
           return parseInt(this.style.height, 10) || 0;
         },
       },
@@ -683,7 +683,7 @@ describe('FixedSizeList', () => {
 
   describe('itemKey', () => {
     it('should be used', () => {
-      const itemKey = jest.fn(index => index);
+      const itemKey = jest.fn((index) => index);
       ReactTestRenderer.create(
         <FixedSizeList {...defaultProps} itemCount={3} itemKey={itemKey} />
       );
@@ -703,7 +703,7 @@ describe('FixedSizeList', () => {
           return keyMapItemRenderer(this.props);
         }
       }
-      const itemKey = jest.fn(index => keyMap[index]);
+      const itemKey = jest.fn((index) => keyMap[index]);
       const rendered = ReactTestRenderer.create(
         <FixedSizeList {...defaultProps} itemCount={3} itemKey={itemKey}>
           {ItemRenderer}
@@ -734,7 +734,7 @@ describe('FixedSizeList', () => {
     });
 
     it('should receive a data value if itemData is provided', () => {
-      const itemKey = jest.fn(index => index);
+      const itemKey = jest.fn((index) => index);
       const itemData = {};
       ReactTestRenderer.create(
         <FixedSizeList
